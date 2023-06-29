@@ -12,6 +12,7 @@ const MAX_RETRIES = 3;
 function App() {
   const [formData, setFormData] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [refreshList, setRefreshList] = useState(true);
   const [disableLikeButton, setDisableLikeButton] = useState(false);
   const [retry, setRetry] = useState({count: 0, error: false});
 
@@ -31,6 +32,8 @@ function App() {
       if (response.status === 202) {
         retry.error && setRetry({...retry, error: false});
         setShowToast(false);
+        // reloads table data
+        setRefreshList(true);
       }
     } catch (error) {
       console.log(error);
@@ -61,7 +64,7 @@ function App() {
         setDisableLikeButton={setDisableLikeButton}
       />
       <Container>
-        <Content />
+        <Content refreshList={refreshList} setRefreshList={setRefreshList} />
       </Container>
     </>
   );
