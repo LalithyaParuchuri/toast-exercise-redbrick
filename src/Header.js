@@ -101,6 +101,7 @@ export default function Header(props) {
             variant="contained"
             size="small"
             color="secondary"
+            disabled={rest.showToast}
             onClick={() => createMockFormSubmission()}
           >
             New Submission
